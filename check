@@ -1,0 +1,33 @@
+#!/bin/bash
+
+load inquirer
+
+check() {
+  config::load_file $SERVICE_CONFIG
+
+  if [ -z "$SERVICE_REDIS_HOST" ]; then
+    inquirer::text "请输入 SERVICE_REDIS_HOST:" value
+    config::set SERVICE_REDIS_HOST $value $SERVICE_CONFIG
+  fi
+
+  if [ -z "$SERVICE_REDIS_PORT" ]; then
+    inquirer::text "请输入 SERVICE_REDIS_PORT:" value
+    config::set SERVICE_REDIS_PORT $value $SERVICE_CONFIG
+  fi
+
+  if [ -z "$SERVICE_REDIS_SECRET" ]; then
+    inquirer::text "请输入 SERVICE_REDIS_SECRET:" value "$(os::uuid)"
+    config::set SERVICE_REDIS_SECRET $value $SERVICE_CONFIG
+  fi
+
+  # @TODO load again
+  config::load_file $SERVICE_CONFIG
+
+  # @TODO
+  export SERVICE_REDIS_HOST=$SERVICE_REDIS_HOST
+  export SERVICE_REDIS_PORT=$SERVICE_REDIS_PORT
+
+  export SERVICE_REDIS_SECRET=$SERVICE_REDIS_SECRET
+}
+
+check $@
