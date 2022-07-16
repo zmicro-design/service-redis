@@ -1,3 +1,3 @@
 NAME=redis
-VERSION=v0.0.2
+VERSION=v2.0.0
 DESCRIPTION="Redis Service"
