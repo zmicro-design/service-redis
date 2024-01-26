@@ -11,6 +11,8 @@ services:
       - type: bind
         source: ${SERVICE_DATA}
         target: /data
+    mem_limit: ${SERVICE_REDIS_RESOURCE_LIMIT_MEM}
+    cpus: ${SERVICE_REDIS_RESOURCE_LIMIT_CPU}
 
 networks:
   default:
