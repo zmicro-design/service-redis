@@ -3,7 +3,7 @@ version: '3.7'
 services:
   redis:
     restart: always
-    image: whatwewant/redis:${SERVICE_REDIS_VERSION}
+    image: ${SERVICE_IMAGE_REGISTRY}/whatwewant/redis:${SERVICE_REDIS_VERSION}
     ports:
       - ${SERVICE_REDIS_HOST}:${SERVICE_REDIS_PORT}:6379
     command: redis-server --requirepass $SERVICE_REDIS_SECRET
